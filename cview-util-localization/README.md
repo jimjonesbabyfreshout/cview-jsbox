@@ -1,0 +1,3 @@
+#cview localization
+
+为cview提供不依赖$app.strings的localization支持，仅供单独的组件使用

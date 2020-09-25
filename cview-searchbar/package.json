@@ -1,0 +1,36 @@
+{
+  "name": "cview-searchbar",
+  "version": "0.1.0",
+  "description": "",
+  "main": "./index.js",
+  "keywords": [
+    "jsbox",
+    "cview"
+  ],
+  "scripts": {
+    "test": "browserify -e ./test.js -o ~/bundle.js"
+  },
+  "files": [
+    "index.js",
+    "package.json",
+    "package-lock.json"
+  ],
+  "exports": {
+    ".": [
+      {
+        "require": "./index.js",
+        "default": "./index.js"
+      },
+      "./index.js"
+    ]
+  },
+  "author": "gandum2077",
+  "license": "MIT",
+  "dependencies": {
+    "cview-baseview": "file:../cview-baseview",
+    "cview-singleviews": "file:../cview-singleviews",
+    "cview-util-colors": "file:../cview-util-colors",
+    "cview-util-localization": "file:../cview-util-localization",
+    "cview-util-ui": "file:../cview-util-ui"
+  }
+}
