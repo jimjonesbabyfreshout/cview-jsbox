@@ -1,5 +1,5 @@
 {
-  "name": "cview-splitview-controller",
+  "name": "cview-pageviewer-controller",
   "version": "0.1.0",
   "description": "",
   "main": "./index.js",
@@ -27,8 +27,10 @@
   "author": "gandum2077",
   "license": "MIT",
   "dependencies": {
-    "cview-pageviewer": "file:../cview-pageviewer",
     "cview-singleviews": "file:../cview-singleviews",
-    "cview-basecontroller": "file:../cview-basecontroller"
+    "cview-basecontroller": "file:../cview-basecontroller",
+    "cview-pageviewer": "file:../cview-pageviewer",
+    "cview-pageviewer-titlebar": "file:../cview-pageviewer-titlebar",
+    "cview-custom-navigationbar": "file:../cview-custom-navigationbar"
   }
 }
