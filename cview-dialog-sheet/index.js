@@ -5,7 +5,7 @@ const { l10n } = require("cview-util-localization");
 class DialogSheet extends Sheet {
   constructor({ props }) {
     super({
-      presentMode: props.presentMode || $device.isIpad ? 2 : 1,
+      presentMode: props.presentMode || ($device.isIpad ? 2 : 1),
       bgcolor: props.bgcolor
     });
     this._props = props;
