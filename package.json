@@ -8,7 +8,7 @@
     "cview"
   ],
   "scripts": {
-    "test": "browserify -e ./index.js -o ./bundle.js"
+    "test": "browserify -e ./test.js -o ～/bundle.js"
   },
   "files": [
     "index.js",
