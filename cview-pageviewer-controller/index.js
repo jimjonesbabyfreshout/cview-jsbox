@@ -5,7 +5,7 @@ const CustomNavigationBar = require("cview-custom-navigationbar");
 
 class PageViewerController extends BaseController {
   constructor({ props, layout, events = {} } = {}) {
-    props = { type: 1 << 3, index: 0, props };
+    props = { type: 1 << 3, index: 0, ...props };
     super({ props, layout, events });
   }
 
@@ -13,19 +13,25 @@ class PageViewerController extends BaseController {
     this.cviews.pageviewer = new PageViewer({
       props: {
         page: this._props.index,
-        cviews: this._props.items.controller.map(n => n.rootView)
+        cviews: this._props.items.map(n => n.controller.rootView)
       },
       layout: (make, view) => {
         make.left.right.bottom.inset(0)
         make.top.equalTo(view.prev.bottom)
+      },
+      events: {
+        floatPageChanged: (cview, floatPage) => (this.cviews.titlebar.floatedIndex = floatPage)
       }
     });
     this.cviews.titlebar = new PageViewerTitleBar({
       props: {
-        items: this._props.items.controller.map(n => n.title),
-        index: this.props.index
+        items: this._props.items.map(n => n.title),
+        index: this._props.index
       },
-      layout: $layout.fll
+      layout: $layout.fill,
+      events: {
+        changed: (cview, index) => this.cviews.pageviewer.scrollToPage(index)
+      }
     });
     this.cviews.navbar = new CustomNavigationBar({
       props: {

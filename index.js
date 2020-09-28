@@ -26,9 +26,9 @@ module.exports = {
   singleviews: require("cview-singleviews"),
   controllers: {
     BaseController: require("cview-basecontroller"),
-//    PageViewerController: require("cview-pageviewer-controller"),
+    PageViewerController: require("cview-pageviewer-controller"),
     SplitViewController: require("cview-splitview-controller"),
-//    TabBarController: require("cview-tabbar-controller"),
+    TabBarController: require("cview-tabbar-controller"),
 //    controllerRouter: require("cview-controller-router")
   },
 //  model: {

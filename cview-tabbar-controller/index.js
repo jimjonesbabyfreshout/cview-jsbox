@@ -15,7 +15,7 @@ class TabBarController extends BaseController {
         index: this._props.index
       },
       events: {
-        changed: index => (this.index = index)
+        changed: (cview, index) => (this.index = index)
       }
     });
 
@@ -36,14 +36,15 @@ class TabBarController extends BaseController {
       layout: $layout.fill,
       views: this.cviews.pages.map(n => n.definition)
     });
+    this.rootView.views = [this.cviews.pageContentView, this.cviews.tabbar]
     super._create();
   }
 
   set index(num) {
+    this.cviews.tabbar.index = num;
     this.cviews.pages.forEach((n, i) => {
       n.view.hidden = i !== num;
     });
-    this.cviews.tabbar.index = num;
     this._props.index = num;
   }
 
