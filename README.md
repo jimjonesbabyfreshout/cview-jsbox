@@ -79,6 +79,10 @@ Model 层定义数据结构，并获取、处理、缓存数据。Model 层应�
 
   参见 [cview-loading-wedges](./cview-loading-wedges/README.md)
 
+- PageControl
+
+  参见 [cview-pagecontrol](./cview-pagecontrol/README.md)
+
 - PageViewer
 
   参见 [cview-pageviewer](./cview-pageviewer/README.md)

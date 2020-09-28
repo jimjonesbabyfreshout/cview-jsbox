@@ -12,6 +12,7 @@ module.exports = {
     LoadingDoubleRings: require("cview-loading-double-rings"),
     LoadingDualRing: require("cview-loading-dual-ring"),
     LoadingWedges: require("cview-loading-wedges"),
+    PageControl: require("cview-pagecontrol"),
     PageViewer: require("cview-pageviewer"),
     PageViewerTitleBar: require("cview-pageviewer-titlebar"),
     PreferenceListViewDynamic: require("cview-preferencelistview-dynamic"),
