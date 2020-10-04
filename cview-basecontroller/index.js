@@ -1,6 +1,7 @@
 const BaseView = require("cview-baseview");
 const { ContentView } = require("cview-singleviews");
 const cvid = require("cview-util-cvid");
+const router = require("cview-controller-router");
 
 const controllerTypes = {
   defaultController: 0,
@@ -90,6 +91,7 @@ class BaseController {
     if (this._status !== controllerStatus.created) return;
     this._status = controllerStatus.loaded;
     if (this._events.didLoad) this._events.didLoad(this);
+    router.add(this)
   }
 
   appear() {
@@ -100,6 +102,7 @@ class BaseController {
     )
       return;
     if (this._events.didAppear) this._events.didAppear(this);
+    router.focus = this;
     this._status = controllerStatus.appeared;
   }
 
@@ -119,6 +122,7 @@ class BaseController {
     // 如果已经移除，不可以再次运行
     if (this._status === controllerStatus.removed) return;
     if (this._events.didRemove) this._events.didRemove(this);
+    router.delete(this)
     this._status = controllerStatus.removed;
   }
 
