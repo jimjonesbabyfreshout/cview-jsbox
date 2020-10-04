@@ -2,39 +2,6 @@ const { Matrix } = require("cview-singleviews");
 const BaseView = require("cview-baseview");
 const cvid = require("cview-util-cvid");
 
-/**
- * 仿制的flowlayout
- * 通过在右侧插入空白的item，从而作出假象的左对齐。
- * 
- * 已知问题：
- *  - 当某一行中所占用的总宽度恰好使得右侧的剩余宽度在1 * spacing 到 2 * spacing之间，此时无法插入空白item，这一行的spacing将会被拉宽
- *  - 不可以依赖indexPath，请将原数据和此CView的数据分离，通过data中加入标记的方法来定位的原数据
- *
- * !!! layout当中必须有关于height的约束 ！！！
- *
- *  - columns不定，item宽度不相等但高度固定，spacing固定，左对齐，自动换行
- *  - 不可滚动，会自动调整自身的高度，因而拥有方法 heightToWidth(width: number): number 用于事前确定其应有的高度
- *    事件heightChanged: (cview, height) => void 用于高度变更时回调
- *  - 此控件不能直接指定props.data，而是需要指定sections，并且每个item都需要改为{data: any, width: number} 其中data代表原item的内容，width代表其应有的宽度
- *  - 如果item.width > frame.width - 2 * spacing, 那么生成的对应item将单独占用一行，其宽度为frame.width - 2 * spacing
- *  - 
- *
- * 特别参数
- *  - sections: {title: string, items: {data: any, width: number}[]}[]  即使只有单个section也必须用多sections的写法
- *    此参数可以在cview.view生成后重新写入
- *
- * props:
- *  - itemHeight 默认为40
- *  - spacing 默认为5
- *  - scrollEnabled 固定为false
- *
- * 除了props: data 和events: itemSize 不可用，其他均和matrix一致
- *
- * methods
- *  - heightToWidth(width: number): number
- *  - getSectionHeights(width: number): number[]
- *  - reload()
- */
 class ArtificialFlowlayout extends BaseView {
   constructor({ sections, props, layout, events }) {
     super();
