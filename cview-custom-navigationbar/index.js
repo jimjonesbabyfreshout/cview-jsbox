@@ -276,7 +276,7 @@ class CustomNavigationBar extends BaseView {
           props: {
             title: n.title,
             bgcolor: $color("clear"),
-            titleColor: this._props.tintColor,
+            titleColor: n.tintColor || this._props.tintColor,
             cornerRadius: 0
           },
           layout: (make, view) => {
@@ -293,7 +293,7 @@ class CustomNavigationBar extends BaseView {
           props: {
             symbol: n.symbol,
             image: n.image,
-            tintColor: this._props.tintColor
+            tintColor: n.tintColor || this._props.tintColor
           },
           layout: (make, view) => {
             make.top.bottom.inset(0);
