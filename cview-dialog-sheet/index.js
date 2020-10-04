@@ -1,6 +1,7 @@
 const Sheet = require("cview-sheet");
 const CustomNavigationBar = require("cview-custom-navigationbar");
 const { l10n } = require("cview-util-localization");
+const { ContentView } = require("cview-singleviews");
 
 class DialogSheet extends Sheet {
   constructor({ props }) {
@@ -27,11 +28,10 @@ class DialogSheet extends Sheet {
       make.left.right.equalTo(view.super.safeArea);
       make.top.equalTo(view.prev.bottom);
     };
-    this._view = {
-      type: "view",
-      props: {},
+    this._cview = new ContentView({
+      props: {bgcolor: $color("clear")},
       views: [this._navbar.definition, this._props.cview.definition]
-    };
+    });
     super.present();
   }
 

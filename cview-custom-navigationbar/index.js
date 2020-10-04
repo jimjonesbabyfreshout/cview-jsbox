@@ -193,7 +193,8 @@ class CustomNavigationBar extends BaseView {
         bgcolor: undefined
       },
       layout: (make, view) => {
-        make.left.right.top.inset(0);
+        make.top.inset(0);
+        make.left.right.inset(5);
         make.height.equalTo(50);
       },
       views: [

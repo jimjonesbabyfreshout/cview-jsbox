@@ -1,5 +1,5 @@
 {
-  "name": "cview-dialog-sheet",
+  "name": "cview-presented-pagecontroller",
   "version": "0.1.0",
   "description": "",
   "main": "./index.js",
@@ -27,13 +27,7 @@
   "author": "gandum2077",
   "license": "MIT",
   "dependencies": {
-    "cview-baseview": "file:../cview-baseview",
-    "cview-singleviews": "file:../cview-singleviews",
-    "cview-custom-navigationbar": "file:../cview-custom-navigationbar",
-    "cview-sheet": "file:../cview-sheet",
-    "cview-util-localization": "file:../cview-util-localization"
-  },
-  "devDependencies": {
-    "cview-singleviews": "file:../cview-singleviews"
+    "cview-basecontroller": "file:../cview-basecontroller",
+    "cview-sheet": "file:../cview-sheet"
   }
 }

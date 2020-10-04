@@ -19,14 +19,14 @@ class Sheet {
     animated = true,
     interactiveDismissalDisabled = false,
     bgcolor = $color("secondarySurface"),
-    view,
+    cview,
     dismissalHandler
   } = {}) {
     this._animated = animated;
     this._presentMode = presentMode;
     this._interactiveDismissalDisabled = interactiveDismissalDisabled;
     this._bgcolor = bgcolor;
-    this._view = view;
+    this._cview = cview;
     this._dismissalHandler = dismissalHandler;
     this.id = cvid.newId;
     
@@ -40,7 +40,7 @@ class Sheet {
     this._PSViewController.$setModalPresentationStyle(this._presentMode);
     if (this._interactiveDismissalDisabled)
       this._PSViewController.$setModalInPresentation(true);
-    if (this._view) this._add(this._view);
+    if (this._cview) this._add(this._cview);
   }
 
   _define() {
@@ -55,8 +55,9 @@ class Sheet {
   }
 
   _add(view) {
-    view.layout = $layout.fill
-    this._PSViewControllerView.jsValue().add(view);
+    const definition = view.definition
+    definition.layout = $layout.fill
+    this._PSViewControllerView.jsValue().add(definition);
   }
 
   present() {

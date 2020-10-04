@@ -10,7 +10,7 @@
 | animated                     | boolean  | true                        | 是否启用动画效果           |
 | interactiveDismissalDisabled | boolean  | false                       | 是否禁用下拉退出           |
 | bgcolor                      | \$color  | \$color("secondarySurface") | 背景色                     |
-| view                         | object   |                             | 包含的 view 定义           |
+| cview                        | Cview    |                             | Cview                      |
 | dismissalHandler             | function |                             | 退出时的回调               |
 
 方法：
