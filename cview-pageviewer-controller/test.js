@@ -1,5 +1,6 @@
 const BaseController = require("cview-basecontroller");
 const PageViewerController = require(".");
+const PageControl = require("cview-pagecontrol");
 
 const a = new BaseController({
   events: {
@@ -64,6 +65,21 @@ const pvc = new PageViewerController({
         }
       ],
       popButtonEnabled: true
+    }
+  },
+  events: {
+    didLoad: controller => {
+      controller.rootView.add(new PageControl({
+        props: {
+          numberOfPages: 3,
+          currentPage: 1,
+        },
+        layout: (make, view) => {
+          make.centerX.equalTo(view.super.centerX)
+          make.size.equalTo($size(200, 20))
+          make.bottom.inset(50)
+        }
+      }))
     }
   }
 });

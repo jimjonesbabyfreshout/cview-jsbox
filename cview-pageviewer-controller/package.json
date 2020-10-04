@@ -32,5 +32,8 @@
     "cview-pageviewer": "file:../cview-pageviewer",
     "cview-pageviewer-titlebar": "file:../cview-pageviewer-titlebar",
     "cview-custom-navigationbar": "file:../cview-custom-navigationbar"
+  },
+  "devDependencies": {
+    "cview-pagecontrol": "file:../cview-pagecontrol"
   }
 }
