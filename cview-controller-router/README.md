@@ -1,6 +1,6 @@
 # CView Controller Router
 
-Router 追踪 Controller 的状态并实现导航和查找。  
+Router 通过将 Controller 记录在多叉树上，以记录 controller 的状态，并实现导航和查找。  
 全局只有一个 Router。  
 
 ## 功能

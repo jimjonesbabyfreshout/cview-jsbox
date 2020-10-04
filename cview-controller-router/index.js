@@ -1,4 +1,9 @@
-const TreeModel = require("tree-model");
+/**
+ * 由于 controller 的加载顺序是无法控制的，因此放弃将 controller 放在多叉树上。
+ * 核心改为一个集合，包含两个特殊属性：根视图、激活视图
+ * 依据Set自身的方法实现add、delete，查找，包括get、getByTag，依赖forEach实现
+ * 此模块只用于查找，不对 controller 发出任何指令
+ */
 
 const controllerTypes = {
   defaultController: 0,
@@ -14,89 +19,63 @@ const controllerTypes = {
 };
 
 class Router {
-  constructor({
-    slientModeEnabled = true
-  }) {
-    this.slientModeEnabled = slientModeEnabled
-    this._tree = new TreeModel();
+  constructor() {
+    this._set = new Set();
   }
 
-  _addRoot(controller) {
-    this._rootNode = this._tree.parse({ controller });
+  add(controller) {
+    this._set.add(controller);
+    if (!this.root && controller.type & controllerTypes.rootController)
+      this.root = controller;
   }
 
-  _getNode(id) {
-    if (!this._rootNode) return;
-    return this._rootNode.first(n => n.model.controller.id === id)
+  delete(controller) {
+    this._set.delete(controller);
   }
 
-  /**
-   * 以 id 查找 controller，若没有返回 undefined
-   * @param {string} id
-   * @returns {Controller}
-   */
   get(id) {
-    const node = this._rootNode.first(n => n.model.controller.id === id)
-    if (node) return node.model.controller;
-    return
+    const result = this._filter(n => n.id === id);
+    if (result.length) return result[0];
+    else return;
   }
 
-  add(controller, superController) {
-    if (controller.type & controllerTypes.rootController) {
-      this._addRoot(controller);
-      return;
-    }
-    const node = superController
-      ? this._tree.first(n => n.model.controller.id === superController.id)
-      : this.focusNode;
-    if (!node) throw new Error("Cannot find super node");
-    node.add({ controller });
-  }
-
-  remove(controller) {
-    const node = this._tree.first(n => n.model.controller.id === controller.id)
-    if (node) node.drop();
+  getByTag(tag) {
+    return this._filter(n => n.tags.includes(tag));
   }
 
   /**
    *
-   * @param {string} tag
-   * @returns {Controller[]}
+   * @param {Function} handler 过滤条件
    */
-  getByTag(tag) {
-    const nodes = this._rootNode.all(n => n.model.controller.tags.includes(tag))
-    if (nodes && nodes.length) return nodes.map(n => n.model.controller);
-    return
+  _filter(handler) {
+    const result = [];
+    this._set.forEach(n => {
+      if (handler(n)) result.push(n);
+    });
+    return result;
   }
 
-  /**
-   * @returns {Node}
-   */
-  get focusNode() {
-    if (!this._focusNode) return this._rootNode;
-    else return this._focusNode;
+  get root() {
+    this._root;
   }
 
-  /**
-   * @returns {Node}
-   */
-  set focusNode(controller) {
-    this._focusNode = this._rootNode.first(n => n.model.controller.id === controller.id)
+  set root(controller) {
+    this._root = controller;
   }
 
   get focus() {
-    return this.focusNode.model.controller;
+    return this._focus;
   }
 
   /**
-   * @param {Controller | string} argv controller or its id
+   * @param {Controller | string} param controller or its id
    */
-  set focus(argv) {
-    this.focusNode = (typeof argv === "string") ? this.get(argv) : argv
+  set focus(param) {
+    this._focus = typeof param === "string" ? this.get(param) : param;
   }
 
-  get controllerTree() {
-    return this._tree;
+  get controllerSet() {
+    return this._set;
   }
 }
 

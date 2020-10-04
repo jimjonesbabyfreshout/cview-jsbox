@@ -1,12 +1,13 @@
-const monitor = require(".");
+const router = require(".");
 
-let num = 0
+let num = 0;
 
 class Controller {
   constructor() {
-    this.id = "id_" + num
+    this.id = "id_" + num;
+    this.type = 1;
     num++;
   }
 }
 
-monitor.addRoot(new Controller())
+router.add(new Controller());
