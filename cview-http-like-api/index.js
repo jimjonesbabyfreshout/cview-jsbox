@@ -24,12 +24,15 @@ class HttpLikeApi {
   }
 
   async _request(method, url, params) {
+    let path = url
     if (!params) {
-      const query = new UrlParse(url, true).query;
+      const r = new UrlParse(url, true);
+      const query = r.query;
+      path = r.pathname;
       if (Object.keys(query).length) params = query;
     }
     const router = this._routers.find(
-      n => n.method === method && n.url === url
+      n => n.method === method && n.path === path
     );
     if (!router || !router.handler) {
       return {
@@ -45,14 +48,13 @@ class HttpLikeApi {
         data: result,
         code: 200
       };
-    } catch(e) {
+    } catch (e) {
       return {
         code: e.code || 400,
         error: e.name || "Error",
         message: n.message
-      }
+      };
     }
-    
   }
 
   async get(url, params) {
