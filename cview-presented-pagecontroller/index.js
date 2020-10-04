@@ -1,7 +1,7 @@
 const BaseController = require("cview-basecontroller");
 const Sheet = require("cview-sheet");
 
-class PresentedViewController extends BaseController {
+class PresentedPageController extends BaseController {
   constructor({ props, events } = {}) {
     props = {type: 1 << 2, props}
     super({ props, events });
@@ -25,4 +25,4 @@ class PresentedViewController extends BaseController {
   }
 }
 
-module.exports = PresentedViewController;
+module.exports = PresentedPageController;
