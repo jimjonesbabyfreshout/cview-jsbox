@@ -66,6 +66,7 @@
     "cview-tabbar": "file:cview-tabbar",
     "cview-basecontroller": "file:cview-basecontroller",
     "cview-pageviewer-controller": "file:cview-pageviewer-controller",
+    "cview-presented-pagecontroller": "file:cview-presented-pagecontroller",
     "cview-splitview-controller": "file:cview-splitview-controller",
     "cview-tabbar-controller": "file:cview-tabbar-controller",
     "cview-controller-router": "file:cview-controller-router"

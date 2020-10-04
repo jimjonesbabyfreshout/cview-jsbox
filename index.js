@@ -28,9 +28,10 @@ module.exports = {
   controllers: {
     BaseController: require("cview-basecontroller"),
     PageViewerController: require("cview-pageviewer-controller"),
+    PresentedPageController: require("cview-presented-pagecontroller"),
     SplitViewController: require("cview-splitview-controller"),
     TabBarController: require("cview-tabbar-controller"),
-//    controllerRouter: require("cview-controller-router")
+    controllerRouter: require("cview-controller-router")
   },
 //  model: {
 //    HttpLikeApi: require("cview-http-like-api")
