@@ -25,5 +25,9 @@
     ]
   },
   "author": "gandum2077",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "url-parse": "1.4.7",
+    "is-promise": "4.0.0"
+  }
 }

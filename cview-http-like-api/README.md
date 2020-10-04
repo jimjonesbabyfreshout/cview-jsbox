@@ -1,7 +1,6 @@
 # CView Http-like API
 
 仿 http 方法的 api。这并不直接访问网络，而是借用 http 方法对 Model 层进行封装。
-**一切输入和输出都通过 JSON 进行。**
 
 只借用 4 个 Http 方法：GET、POST、PUT、DELETE，分别对应查、增、改、删
 
@@ -25,6 +24,11 @@ api.add("GET", "username", (method, path, params) => {
 // 然后通过下面的方法调用
 
 const result = await api.get("username", { id: "id1" });
+
+// 或者
+
+const result = await api.get("username?id=id1");
+
 ```
 
 或者可以继承此类，在新的类中进行封装
@@ -32,7 +36,6 @@ const result = await api.get("username", { id: "id1" });
 ```js
 class CustomApi extends HttpLikeApi {
   constructor() {
-    const config = new Config();
     this.add("GET", "username", (method, path, params) => {
       return config.username.get(id);
     });
@@ -42,14 +45,10 @@ class CustomApi extends HttpLikeApi {
 const result = await new CustomApi().get("username", { id: "id1" });
 ```
 
-## Error
+如果正确执行，则会返回`{data: any, code: 200}`。
 
-如果发生错误，则会返回形如`{error: errorName, errorCode: number, message: string}`的 JSON
+如果发生错误，则会返回`{error: string, code: number, message: string}`。
+其中error、code、message是从抛出的错误中获取，默认name为Error，code为400。
 
-其中 errorCode 在 100 以下的被内置的占用，自定义的 Error 请从 100 开始。内置 Error 如下定义：
-| errorName | errorCode | note |
-| --- | --- | --- |
-| UnknownError | 0 | 不明原因 |
-| ArgumentError | 1 | 不明原因的 Error |
-| UnknownError | 2 | 不明原因的 Error |
+
 
