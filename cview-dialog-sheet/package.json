@@ -32,8 +32,5 @@
     "cview-custom-navigationbar": "file:../cview-custom-navigationbar",
     "cview-sheet": "file:../cview-sheet",
     "cview-util-localization": "file:../cview-util-localization"
-  },
-  "devDependencies": {
-    "cview-singleviews": "file:../cview-singleviews"
   }
 }
